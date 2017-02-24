@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>test</title>
+
+	<style>
+	.ui-dialog {
+		padding: 20px;
+	    *zoom:1;
+	    _float: left;
+	    position: relative;
+	    background-color: #FFF;
+	    border: 1px solid #999;
+	    outline: 0;
+	    background-clip: padding-box;
+	    font-family: Helvetica, arial, sans-serif;
+	    font-size: 14px;
+	    line-height: 1.428571429;
+	    color: #333;
+	    opacity: 0;
+	    -webkit-transform: scale(0);
+	    transform: scale(0);
+	    -webkit-transition: -webkit-transform .15s ease-in-out, opacity .15s ease-in-out;
+	    transition: transform .15s ease-in-out, opacity .15s ease-in-out;
+	}
+	.ui-popup-show .ui-dialog {
+	    opacity: 1;
+	    -webkit-transform: scale(1);
+	    transform: scale(1);
+	}
+	.ui-popup-focus .ui-dialog {
+	    box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+	}
+
+    #visible, #hidden, #out-viewport, #half-viewport{
+        width: 400px;
+        height: 200px;
+        border: 1px solid #ccc;
+        text-align: center;
+        line-height: 200px;
+        margin-top: 100px;
+        margin-left: 500px;
+    }
+    #hidden{
+        display: none;
+    }
+    #out-viewport{
+        margin-top: 1400px;
+    }
+    #half-viewport{
+        position: absolute;
+        right: -200px;
+        top: 200px;
+        margin: 0;
+    }
+	</style>
+</head>
+<body>
+
+
+<button id="show-at-visible" t="visible">show at visible div</button>
+<button id="show-at-hidden" t="hidden">show at hidden div</button>
+<button id="show-at-out-viewport" t="out-viewport">show at out viewport div</button>
+<button id="show-at-half-viewport" t="half-viewport">show at half out viewport div</button>
+
+
+<div id="visible">This is the visible div</div>
+<div id="hidden">This is the hidden div</div>
+<div id="out-viewport">This is the out viewport div</div>
+<div id="half-viewport">This is the half viewport div</div>
+
+
+<script src="../lib/sea.js"></script>
+<script>
+seajs.config({
+  alias: {
+    "jquery": "jquery-1.10.2.js"
+  }
+});
+</script>
+
+<script>
+seajs.use(['jquery', '../src/popup.js'], function ($, Popup) {
+
+	var dialog = function (anchor) {
+		var popup = new Popup();
+		popup.innerHTML =
+		 '<div class="ui-dialog">'
+		+	'<p>hello world</p>'
+		+	'<button id="dialog-close">close</button>'
+		+'</div>';
+		popup.show(anchor);
+
+		$('#dialog-close').one('click', function () {
+			popup.close().remove();
+		});
+	};
+
+    $('#show-at-visible').add('#show-at-hidden').add('#show-at-out-viewport').add('#show-at-half-viewport').on('click', function(e){
+        dialog( $('#'+$(this).attr('t'))[0] );
+    });
+});
+</script>
+</body>
+</html>
