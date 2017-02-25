@@ -54,6 +54,12 @@
         top: 200px;
         margin: 0;
     }
+    #top-out{
+        position: absolute;
+        top: -600px;
+        left: 0;
+        margin: 0;
+    }
 	</style>
 </head>
 <body>
@@ -62,6 +68,7 @@
 <button id="show-at-visible" t="visible">show at visible div</button>
 <button id="show-at-hidden" t="hidden">show at hidden div</button>
 <button id="show-at-out-viewport" t="out-viewport">show at out viewport div</button>
+<button id="show-at-top-out" t="top-out">show at out viewport div</button>
 <button id="show-at-half-viewport" t="half-viewport">show at half out viewport div</button>
 
 
@@ -69,6 +76,7 @@
 <div id="hidden">This is the hidden div</div>
 <div id="out-viewport">This is the out viewport div</div>
 <div id="half-viewport">This is the half viewport div</div>
+<div id="top-out">This is the top out div</div>
 
 
 <script src="../lib/sea.js"></script>
@@ -90,6 +98,7 @@ seajs.use(['jquery', '../src/popup.js'], function ($, Popup) {
 		+	'<p>hello world</p>'
 		+	'<button id="dialog-close">close</button>'
 		+'</div>';
+        popup.debug = true;
 		popup.show(anchor);
 
 		$('#dialog-close').one('click', function () {
@@ -97,7 +106,7 @@ seajs.use(['jquery', '../src/popup.js'], function ($, Popup) {
 		});
 	};
 
-    $('#show-at-visible').add('#show-at-hidden').add('#show-at-out-viewport').add('#show-at-half-viewport').on('click', function(e){
+    $('#show-at-visible').add('#show-at-hidden').add('#show-at-out-viewport').add('#show-at-half-viewport').add('#show-at-top-out').on('click', function(e){
         dialog( $('#'+$(this).attr('t'))[0] );
     });
 });
