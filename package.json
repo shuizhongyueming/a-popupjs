@@ -1,17 +1,17 @@
 {
-  "name": "popupjs",
+  "name": "a-popupjs",
   "version": "1.0.0",
   "readmeFilename": "README.md",
   "description": "W3C HTML5 Dialog Plus",
-  "homepage": "https://github.com/aui/popupjs",
+  "homepage": "https://github.com/shuizhongyueming/a-popupjs",
   "keywords": [
     "dialog",
     "popup"
   ],
-  "author": "aui",
+  "author": "shuizhongyueming@gmail.com",
   "repository": {
     "type": "git",
-    "url": "https://github.com/aui/popupjs.git"
+    "url": "https://github.com/shuizhongyueming/a-popupjs.git"
   },
   "main": "./src/popup.js",
   "dependencies": {
